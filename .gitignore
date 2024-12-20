@@ -6,6 +6,8 @@
 # Custom Values
 data/
 .idea/
+mongodb-data/
+n8n-data/
 
 # Session Data files
 .RData

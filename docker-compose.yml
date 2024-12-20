@@ -1,0 +1,31 @@
+networks:
+  datenanalyse_in_unternehmen:
+    driver: bridge
+
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=Maximax123
+    volumes:
+      - ./mongodb-data:/data/db
+    networks:
+      - datenanalyse_in_unternehmen
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    ports:
+      - 5678:5678
+    environment:
+      - GENERIC_TIMEZONE=EUROPE/BERLIN
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_USER_FOLDER=/home/node/.n8n
+    volumes:
+      - ./n8n-data:/data
+      - ./n8n-workflows:/home/node/.n8n
+    networks:
+      - datenanalyse_in_unternehmen
