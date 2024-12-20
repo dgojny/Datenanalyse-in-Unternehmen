@@ -3,8 +3,9 @@
 .Rhistory
 .Rapp.history
 
-# Data
+# Custom Values
 data/
+.idea/
 
 # Session Data files
 .RData
