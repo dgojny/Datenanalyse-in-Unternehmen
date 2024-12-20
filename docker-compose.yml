@@ -26,6 +26,7 @@ services:
       - GENERIC_TIMEZONE=EUROPE/BERLIN
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - N8N_USER_FOLDER=/home/node/.n8n
+      - N8N_SECURE_COOKIE=false
     volumes:
       - ./n8n-data:/data
       - ./n8n-workflows:/home/node/.n8n
