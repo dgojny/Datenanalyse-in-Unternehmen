@@ -3,6 +3,30 @@ networks:
     driver: bridge
 
 services:
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=Maximax123
+    volumes:
+      - ./grafana_data:/var/lib/grafana
+    networks:
+      - datenanalyse_in_unternehmen
+  timescaledb:
+    image: timescale/timescaledb:latest-pg16
+    container_name: timescaledb
+    ports:
+      - "5000:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=Maximax123
+    volumes:
+      - ./timescaledb-data:/var/lib/postgresql/data
+    networks:
+      - datenanalyse_in_unternehmen
   mongodb:
     image: mongo
     container_name: mongodb
