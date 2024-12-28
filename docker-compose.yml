@@ -9,8 +9,8 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=Maximax123
+      - GF_SECURITY_ADMIN_USER=
+      - GF_SECURITY_ADMIN_PASSWORD=
     volumes:
       - ./grafana_data:/var/lib/grafana
     networks:
@@ -21,8 +21,8 @@ services:
     ports:
       - "5000:5432"
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=Maximax123
+      - POSTGRES_USER=
+      - POSTGRES_PASSWORD=
     volumes:
       - ./timescaledb-data:/var/lib/postgresql/data
     networks:
@@ -35,8 +35,8 @@ services:
     mem_limit: 8g
     memswap_limit: 10g
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=Maximax123
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
     volumes:
       - ./mongodb-data:/data/db
     networks:
