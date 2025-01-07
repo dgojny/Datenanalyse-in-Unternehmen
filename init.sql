@@ -102,20 +102,68 @@ CREATE TABLE diu.traffic_incidents (
                                        vehiclerestrictions JSONB
 );
 
-CREATE TABLE diu.tmp_coordinates (
-    lat DOUBLE PRECISION,
-    lng DOUBLE PRECISION
+CREATE TABLE diu.environment_variables (
+    key VARCHAR NOT NULL,
+    value JSONB NOT NULL
 );
 
-INSERT INTO diu.tmp_coordinates (lat, lng)
+CREATE TABLE diu.analytics_general_stats (
+                                             olr VARCHAR NOT NULL,
+                                             avg_speed DOUBLE PRECISION,
+                                             std_speed DOUBLE PRECISION,
+                                             min_speed DOUBLE PRECISION,
+                                             "25%_speed" DOUBLE PRECISION,
+                                             med_speed DOUBLE PRECISION,
+                                             "75%_speed" DOUBLE PRECISION,
+                                             max_speed DOUBLE PRECISION,
+                                             avg_speeduncapped DOUBLE PRECISION,
+                                             std_speeduncapped DOUBLE PRECISION,
+                                             min_speeduncapped DOUBLE PRECISION,
+                                             "25%_speeduncapped" DOUBLE PRECISION,
+                                             med_speeduncapped DOUBLE PRECISION,
+                                             "75%_speeduncapped" DOUBLE PRECISION,
+                                             max_speeduncapped DOUBLE PRECISION,
+                                             avg_freeflow DOUBLE PRECISION,
+                                             std_freeflow DOUBLE PRECISION,
+                                             min_freeflow DOUBLE PRECISION,
+                                             "25%_freeflow" DOUBLE PRECISION,
+                                             med_freeflow DOUBLE PRECISION,
+                                             "75%_freeflow" DOUBLE PRECISION,
+                                             max_freeflow DOUBLE PRECISION,
+                                             avg_jamfactor DOUBLE PRECISION,
+                                             std_jamfactor DOUBLE PRECISION,
+                                             min_jamfactor DOUBLE PRECISION,
+                                             "25%_jamfactor" DOUBLE PRECISION,
+                                             med_jamfactor DOUBLE PRECISION,
+                                             "75%_jamfactor" DOUBLE PRECISION,
+                                             max_jamfactor DOUBLE PRECISION,
+                                             avg_confidence DOUBLE PRECISION,
+                                             std_confidence DOUBLE PRECISION,
+                                             min_confidence DOUBLE PRECISION,
+                                             "25%_confidence" DOUBLE PRECISION,
+                                             med_confidence DOUBLE PRECISION,
+                                             "75%_confidence" DOUBLE PRECISION,
+                                             max_confidence DOUBLE PRECISION,
+                                             avg_time_to_traverse DOUBLE PRECISION,
+                                             std_time_to_traverse DOUBLE PRECISION,
+                                             min_time_to_traverse DOUBLE PRECISION,
+                                             "25%_time_to_traverse" DOUBLE PRECISION,
+                                             med_time_to_traverse DOUBLE PRECISION,
+                                             "75%_time_to_traverse" DOUBLE PRECISION,
+                                             max_time_to_traverse DOUBLE PRECISION
+);
+
+INSERT INTO diu.environment_variables (key, value)
 VALUES
-    (52.126933, 8.6851887),
-    (51.9080392, 8.3882146);
+    ('GRAFANA_INIT_GEOMAPS', '[{"lat": 52.126933, "lng": 8.6851887}, {"lat": 51.9080392, "lng": 8.3882146}]'::JSONB);
+
+INSERT INTO diu.analytics_general_stats ()
 
 CREATE USER grafanareader WITH PASSWORD '';
 
 GRANT USAGE ON SCHEMA diu TO grafanareader;
-GRANT SELECT ON diu.tmp_coordinates TO grafanareader;
+GRANT SELECT ON diu.analytics_general_stats TO grafanareader;
+GRANT SELECT ON diu.environment_variables TO grafanareader;
 GRANT SELECT ON diu.traffic_data TO grafanareader;
 GRANT SELECT ON diu.traffic_incidents TO grafanareader;
 GRANT SELECT ON diu.traffic_regional_cluster TO grafanareader;
