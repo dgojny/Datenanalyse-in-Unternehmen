@@ -153,11 +153,16 @@ CREATE TABLE diu.analytics_general_stats (
                                              max_time_to_traverse DOUBLE PRECISION
 );
 
+CREATE TABLE diu.traffic_patters_cluster (
+                                              olr VARCHAR NOT NULL,
+                                              cluster INT,
+                                              shape JSONB,
+                                              method VARCHAR
+);
+
 INSERT INTO diu.environment_variables (key, value)
 VALUES
     ('GRAFANA_INIT_GEOMAPS', '[{"lat": 52.126933, "lng": 8.6851887}, {"lat": 51.9080392, "lng": 8.3882146}]'::JSONB);
-
-INSERT INTO diu.analytics_general_stats ()
 
 CREATE USER grafanareader WITH PASSWORD '';
 
@@ -167,6 +172,7 @@ GRANT SELECT ON diu.environment_variables TO grafanareader;
 GRANT SELECT ON diu.traffic_data TO grafanareader;
 GRANT SELECT ON diu.traffic_incidents TO grafanareader;
 GRANT SELECT ON diu.traffic_regional_cluster TO grafanareader;
+GRANT SELECT ON diu.traffic_patters_cluster TO grafanareader;
 GRANT SELECT ON diu.weather_astronomy_forecasts TO grafanareader;
 GRANT SELECT ON diu.weather_observations TO grafanareader;
 GRANT SELECT ON diu.weather_alerts TO grafanareader;
