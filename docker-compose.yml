@@ -55,3 +55,17 @@ services:
       - ./n8n-workflows:/home/node/.n8n
     networks:
       - datenanalyse_in_unternehmen
+  minio:
+    image: minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=Maximax123
+    volumes:
+      - ./minio-data:/data
+    command: server /data --console-address ":9001"
+    networks:
+      - datenanalyse_in_unternehmen
