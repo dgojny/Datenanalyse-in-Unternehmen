@@ -34,8 +34,9 @@ services:
     ports:
       - "5000:5432"
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=Maximax123
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: Maximax123
+      PGOPTIONS: "-c idle_in_transaction_session_timeout=0 -c statement_timeout=0 -c tcp_keepalives_idle=600 -c tcp_keepalives_interval=60 -c tcp_keepalives_count=10"
     volumes:
       - ./timescaledb-data:/var/lib/postgresql/data
     networks:
